@@ -60,7 +60,7 @@ pipeline {
                         url: 'https://github.com/KevinRattan/terraform-jenkins-k8s-terraform.git'
                     sh "ls -a"  
                     sh 'terraform init'
-                     sh "terraform apply -var project_id=${projectId} -var build_number=${env.BUILD_ID} -var external_image_name=external:v20.${env.BUILD_ID}  -var internal_image_name=internal:v20.${env.BUILD_ID}  -auto-approve"
+                     sh "terraform apply -var project_id=${projectId} -var external_image_name=external:v20.${env.BUILD_ID}  -var internal_image_name=internal:v20.${env.BUILD_ID}  -auto-approve"
                   }
             }
             
