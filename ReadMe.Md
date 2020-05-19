@@ -1,5 +1,7 @@
 # Pipeline that builds docker images and uses terraform to create cluster and deploy application for testing
 
+# PREREQUISITES: make sure cloud build and kubernetes apis are enabled in the gcp project.
+
 # 1. Create compute engine instance with following settings:
         Deploy a container image to this VM instance 
             Use hello-world for the container
@@ -14,10 +16,13 @@ docker run -d -p 80:8080 -p 50000:50000 --name jenkinsdemo -v jenkins_home:/var/
 
 docker exec jenkinsdemo cat /var/jenkins_home/secrets/initialAdminPassword
 
-# 4. Create a new pipeline, configure it with the content of the Jenkinsfile
+# 4. Log in to Jenkins and install suggested plugins.
 
-# 5. set the projectID var on the first line to your project id.
+# 5. After creating a user, create a new pipeline, and configure it with the content of the Jenkinsfile in this repo
 
-# 6. Run the pipeline.
+# 5. In the script, set the projectId var on the first line to your project id.
 
-# If you want to set up a trigger, you'll need to create your own repos from at least one of the git endpoints in the script, and modify the Jenkinsfile accordingly.
+# 6. Run the pipeline. It takes a while, as it downloads 2 repos, runs tests, builds docker images and pushe them to gcr.io, then downloads terraform repo, builds the cluster and deploys the images.
+
+
+# If you want to set up a trigger from a commit, you'll need to create your own repos from at least one of the git endpoints in the script, and modify the Jenkinsfile accordingly.
