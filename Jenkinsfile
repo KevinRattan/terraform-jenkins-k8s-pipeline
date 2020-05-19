@@ -1,4 +1,4 @@
-def projectId = "dtc-user130"
+def projectId = "your-project-id-here"
 
 pipeline {
    agent any
